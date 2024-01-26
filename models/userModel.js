@@ -11,8 +11,8 @@ class User {
         return users;
     }
 
-    getByID = (id) => {
-        let users = this.getUsers();
+    getByID = async(id) => {
+        let users = await this.getUsers();
         let result = users.find(item => {
             return item.id == id;
         });

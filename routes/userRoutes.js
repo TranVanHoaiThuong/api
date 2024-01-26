@@ -11,15 +11,16 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
     let id = req.params.id;
-    let user = UserController.getByID(id);
-    let response = {};
-    if(user === undefined) {
-        response.data = null;
-        response.message = `Userid ${id} not exists`;
-    } else {
-        response.data = user;
-    }
-    res.status(200).json(response);
+    UserController.getByID(id).then(user => {
+        let response = {};
+        if(user === undefined) {
+            response.data = null;
+            response.message = `Userid ${id} not exists`;
+        } else {
+            response.data = user;
+        }
+        res.status(200).json(response);
+    });
 });
 
 export default router;
